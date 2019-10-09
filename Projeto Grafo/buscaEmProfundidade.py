@@ -64,3 +64,28 @@ class Grafo_P:
         global tempo
         tempo = 1
         self._buscaEmProfundidade(vertice)
+
+def buscaProfundidade (grafo, inicio, fim, pilha):
+    if inicio in pilha:
+        print("ja na pilha")
+        return pilha
+    pilha.append(inicio)
+    print("pilha atual: " + str(pilha))
+    if pilha[-1] == fim:
+        print("chegou no fim")
+        return pilha
+    vizinhos = grafo[inicio]
+    print ("vizinhos: " + str(vizinhos))
+    for vizinho in vizinhos:
+        print ("No vizinho " + vizinho)
+        if vizinho not in pilha:
+            pilha = buscaProfundidade(grafo, vizinho, fim, pilha)
+            if pilha[-1] == fim:
+                return pilha
+        print("vizinho na pilha")
+        print ("pilha " +str(pilha))
+        if vizinho == vizinhos[-1]:
+            pilha.pop()
+            print("pilha depois do pop " + str(pilha))
+            return pilha
+    return pilha

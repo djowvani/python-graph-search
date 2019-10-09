@@ -32,38 +32,38 @@ if __name__== "__main__" :
 
         # ======================== BUSCA EM LARGURA ========================
         if escolha == 1:
-            # Instanciando um Grafo ideal para se realizar buscas em largura
-            grafo_largura = Grafo_L()
+            
+            largura, pai, aresta, nivel = buscaLargura(grafo, inicio)
 
-            # Populando o grafo com os vértices
-            for x in grafo:
-                grafo_largura.add_vertice(Vertice_L(x))
+            print (str(largura)+ "\n\n")
+            print (str(pai)+ "\n\n")
+            print (str(aresta)+ "\n\n")
+            print (str(nivel)+ "\n\n")
 
-            # Populando o grafo com as arestas
-            conexoes = grafo.values()
-            for x in grafo:
-                for y in conexoes:
-                    grafo_largura.add_aresta(x, y)
-
-            grafo_largura.buscaEmLargura(Vertice_L(fim))
-            grafo_largura.print_mapa()
 
         # ======================== BUSCA EM PROFUNDIDADE ========================
         if escolha == 2:
             # Instanciando um Grafo ideal para se realizar buscas em profundidade
-            grafo_profundidade = Grafo_P()
+            # grafo_profundidade = Grafo_P()
 
-            # Populando o grafo com os vértices
-            for x in vertices:
-                grafo_profundidade.add_vertice(Vertice_P(x))
+            # xo = None
+            # yo = None
+            # for x in grafo:
+            #     for y in grafo[x]:
+            #         xo = Vertice_L(x)
+            #         yo = Vertice_L(y)
+            #         xo.add_vizinho(y)
+            #         yo.add_vizinho(x)
+            #     grafo_profundidade.add_vertice(xo)
+            #     grafo_profundidade.add_vertice(yo)
+            #     grafo_profundidade.add_aresta(xo, yo)
 
-            # Populando o grafo com as arestas
-            for x in linhas:
-                if(x[1] != ";"):
-                    grafo_profundidade.add_aresta(Vertice_P(x[0]), Vertice_P(x[2]))
+            # grafo_profundidade.buscaEmLargura(Vertice_L(fim))
 
-            grafo_profundidade.buscaEmProfundidade(Vertice_P(vertices[0]))
-            grafo_profundidade.print_mapa()
+            fila = []
+            fila = buscaProfundidade(grafo, inicio, fim, fila)
+
+            print (str(fila))
 
         # ======================== BUSCA EM CUSTO UNIFORME ========================
         if escolha == 3:
