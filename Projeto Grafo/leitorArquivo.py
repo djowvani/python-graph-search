@@ -26,7 +26,7 @@ def lerArquivo(arquivo):
     # Instanciando objeto de dicionário a ser utilizado
     dict_conexoes = dicionario() 
 
-    # Populando o dicionário com as conexões 
+    # Populando o dicionário com as conexões
     todos_vertices = []
     for x in linhas:
         if ',' in x:
@@ -37,9 +37,19 @@ def lerArquivo(arquivo):
             if leitura[1] not in todos_vertices:
                 todos_vertices.append(leitura[1])
     
-    todos_vertices = todos_vertices.sort()
-    for x in todos_vertices:
-        dict_conexoes.add(x)
+    todos_vertices.sort()
+
+    comprimento = len(todos_vertices)
+    i = 0
+    for i in range(comprimento):
+        dict_conexoes.add(todos_vertices[i], '')
+        i += 1
+
+    for x in linhas:
+        if ',' in x:
+            leitura = x.split(',')
+
+            dict_conexoes.add(leitura[0], leitura[1])
 
     # vertice = leitura[0]
     # dict_conexoes.add(vertice, '')

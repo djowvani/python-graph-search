@@ -16,8 +16,6 @@ def escolhaBusca(question):
     else:
         return escolhaBusca("\nPor favor insira apenas 1, 2 ou 3.\n'Sair' para sair")
 
-
-
 if __name__== "__main__" :
     print("=== INICIALIZANDO PROJETO ===")
 
