@@ -1,5 +1,5 @@
-from buscaEmProfundidade import Vertice_P, Grafo_P
-from buscaEmLargura import Vertice_L, Grafo_L
+from buscaEmProfundidade import *
+from buscaEmLargura import *
 from buscaEmCustoUni import *
 from leitorArquivo import *
 
@@ -19,7 +19,7 @@ def escolhaBusca(question):
 if __name__== "__main__" :
     print("=== INICIALIZANDO PROJETO ===")
 
-    lerArquivo("mapa_oficial.txt")
+    grafo, inicio, fim = lerArquivo("mapa_oficial.txt")
 
     menu = ''
     while menu is not 'sair':
@@ -36,15 +36,16 @@ if __name__== "__main__" :
             grafo_largura = Grafo_L()
 
             # Populando o grafo com os vértices
-            for x in vertices:
+            for x in grafo:
                 grafo_largura.add_vertice(Vertice_L(x))
 
             # Populando o grafo com as arestas
-            for x in linhas:
-                if(x[1] != ";"):
-                    grafo_largura.add_aresta(Vertice_L(x[0]), Vertice_L(x[2]))
+            conexoes = grafo.values()
+            for x in grafo:
+                for y in conexoes:
+                    grafo_largura.add_aresta(x, y)
 
-            grafo_largura.buscaEmLargura(Vertice_L(vertices[0]))
+            grafo_largura.buscaEmLargura(Vertice_L(fim))
             grafo_largura.print_mapa()
 
         # ======================== BUSCA EM PROFUNDIDADE ========================

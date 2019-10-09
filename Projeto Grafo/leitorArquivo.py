@@ -95,4 +95,4 @@ def lerArquivo(arquivo):
 
     print("INÍCIO: " + inicio + "\nFIM: " + fim + "\n")
 
-    return True
+    return dict_conexoes, inicio, fim

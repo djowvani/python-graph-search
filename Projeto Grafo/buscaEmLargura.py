@@ -19,24 +19,31 @@ class Grafo_L:
     def add_vertice(self, vertice):
         if isinstance(vertice, Vertice_L) and vertice.nome not in self.vertices:
             self.vertices[vertice.nome] = Vertice_L(vertice)
-            print("sdjasijdi")
             return True
         else:
             return False
         
     def add_aresta(self, u, v):
-        if u in self.vertices and v in self.vertices:
-            for key, value in self.vertices.items():
-                print("OKOKOK 1")
-                if key == u:
-                    value.add_aresta(v)
-                    print("OKOKOK 2")
-                if key == v:
-                    value.add_aresta(u)
-                    print("OKOKOK 3")
-            return True
+        if isinstance(v, list):
+            for x in range(len(v)):
+                v = v[x]
+                if u in self.vertices and v in self.vertices:
+                    for key, value in self.vertices.items():
+                        if key == u:
+                            value.add_aresta(v)
+                        if key == v:
+                            value.add_aresta(u)
+                    return True
         else:
-            return False
+            if u in self.vertices and v in self.vertices:
+                for key, value in self.vertices.items():
+                    if key == u:
+                        value.add_aresta(v)
+                    if key == v:
+                        value.add_aresta(u)
+                return True
+            else:
+                return False
 
     def print_mapa(self):
         for key in sorted(list(self.vertices.keys())):
