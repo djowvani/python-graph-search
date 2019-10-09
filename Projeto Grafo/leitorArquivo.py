@@ -24,32 +24,55 @@ def lerArquivo(arquivo):
     inicio = inicio.replace(';', '')
 
     # Instanciando objeto de dicionário a ser utilizado
-    dict_conexoes = dicionario() 
 
     # Populando o dicionário com as conexões
-    todos_vertices = []
-    for x in linhas:
-        if ',' in x:
-            leitura = x.split(',')
-
-            if leitura[0] not in todos_vertices:
-                todos_vertices.append(leitura[0])
-            if leitura[1] not in todos_vertices:
-                todos_vertices.append(leitura[1])
-    
-    todos_vertices.sort()
-
-    comprimento = len(todos_vertices)
-    i = 0
-    for i in range(comprimento):
-        dict_conexoes.add(todos_vertices[i], '')
-        i += 1
+    dict_conexoes = {}
+    listv = []
+    list1 = []
 
     for x in linhas:
         if ',' in x:
             leitura = x.split(',')
+            if leitura[0] not in listv:
+                listv.append(leitura[0])
+                list1.append(leitura[1])
+                listv.append(leitura[1])
+                list1.append(leitura[0])
+            else:
+                for i in range(len(listv)):
+                    if listv[i] == leitura[0]:
+                        list2 = []
+                        for n in list1[i]:
+                            list2.append(n)
+                        list2.append(leitura[1])
+                        list1[i] = list2
+                if leitura[1] not in listv:
+                    listv.append(leitura[1])
+                    list1.append(leitura[0])
+                else:
+                    for i in range(len(listv)):
+                        if listv[i] == leitura[1]:
+                            list2 = []
+                            for n in list1[i]:
+                                list2.append(n)
+                            list2.append(leitura[0])
+                            list1[i] = list2
 
-            dict_conexoes.add(leitura[0], leitura[1])
+    print (listv)
+    for i in range(len(listv)):
+        dict_conexoes[listv[i]] = list1[i]
+
+    # comprimento = len(dict_conexoes)
+    # i = 0
+    # for i in range(comprimento):
+    #    dict_conexoes.add(dict_conexoes[i], '')
+    #    i += 1
+
+    # for x in linhas:
+    #     if ',' in x:
+    #        leitura = x.split(',')
+
+    #       dict_conexoes.add(leitura[0], leitura[1])
 
     # vertice = leitura[0]
     # dict_conexoes.add(vertice, '')
